@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Blockbuster</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Detail Fragment Strings -->
+    <string name="str_add_to_cart">Add to Cart ($%1$s)</string>
+    <string name="str_vote_count">(%1$s)</string>
+    <string name="str_overview">Overview</string>
+    <string name="str_released_on">Release on %1$s</string>
 </resources>

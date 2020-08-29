@@ -18,6 +18,9 @@ class ViewModelFactory(private val context : Context) : ViewModelProvider.Factor
         if(modelClass.isAssignableFrom(MoviesListViewModel::class.java)){
             return MoviesListViewModel(movieRepository) as T
         }
+        else if(modelClass.isAssignableFrom(MovieDetailViewModel::class.java)){
+            return MovieDetailViewModel(movieRepository) as T
+        }
         throw IllegalArgumentException("Unknown view model class")
     }
 }

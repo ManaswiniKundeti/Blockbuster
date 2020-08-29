@@ -18,4 +18,8 @@ class MovieRepository(private val apiService : IApiService, private val appDatab
             mutableListOf()
         }
     }
+
+    suspend fun fetchMovieById(movieId : Int) : Movie{
+        return appDatabase.movieDao().getMovieById(movieId)
+    }
 }

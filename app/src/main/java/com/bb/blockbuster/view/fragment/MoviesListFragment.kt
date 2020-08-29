@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -19,7 +20,7 @@ import com.bb.blockbuster.viewstate.Loading
 import com.bb.blockbuster.viewstate.Success
 import com.bb.blockbuster.viewstate.ViewState
 
-class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener  {
+class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, MovieListAdapter.IItemClickListener  {
 
     private val viewmodelFactory by lazy { ViewModelFactory(requireContext()) }
     private val viewModel: MoviesListViewModel by viewModels {
@@ -42,7 +43,7 @@ class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener  {
         val movieRecyclerView : RecyclerView = view.findViewById(R.id.movies_recycler_view)
         movieRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val movieListAdapter = MovieListAdapter(requireContext(), movieList)
+        val movieListAdapter = MovieListAdapter(requireContext(), movieList, this)
         movieRecyclerView.adapter = movieListAdapter
 
         viewModel.movieListLiveData.observe(viewLifecycleOwner,
@@ -74,5 +75,10 @@ class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener  {
      */
     override fun onRefresh() {
         viewModel.fetchMovies()
+    }
+
+    override fun onItemClick(movie: Movie) {
+        val navDirection = MoviesListFragmentDirections.actionMoviesListFragmentToMovieDetailFragment(movie.movieId)
+        findNavController().navigate(navDirection)
     }
 }

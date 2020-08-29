@@ -32,4 +32,5 @@ class MoviesListViewModel(private val movieRepository :MovieRepository) : ViewMo
             }
         }
     }
+
 }
