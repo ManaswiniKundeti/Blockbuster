@@ -1,7 +1,8 @@
-package com.bb.blockbuster
+package com.bb.blockbuster.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bb.blockbuster.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
