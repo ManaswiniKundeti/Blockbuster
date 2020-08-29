@@ -15,6 +15,9 @@ import com.bb.blockbuster.model.Movie
 import com.bb.blockbuster.view.adapter.MovieListAdapter
 import com.bb.blockbuster.viewmodel.MoviesListViewModel
 import com.bb.blockbuster.viewmodel.ViewModelFactory
+import com.bb.blockbuster.viewstate.Loading
+import com.bb.blockbuster.viewstate.Success
+import com.bb.blockbuster.viewstate.ViewState
 
 class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener  {
 
@@ -32,8 +35,8 @@ class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener  {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_movies_list, container, false)
 
-        val stockRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.movie_refresh_layout)
-        stockRefreshLayout.setOnRefreshListener(this)
+        val movieRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.movie_refresh_layout)
+        movieRefreshLayout.setOnRefreshListener(this)
 
         //display and update recycler view
         val movieRecyclerView : RecyclerView = view.findViewById(R.id.movies_recycler_view)
@@ -43,12 +46,24 @@ class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener  {
         movieRecyclerView.adapter = movieListAdapter
 
         viewModel.movieListLiveData.observe(viewLifecycleOwner,
-            Observer<List<Movie>> { data ->
-                if(!data.isNullOrEmpty()){
-                    movieList.clear()
-                    movieList.addAll(data)
+            Observer<ViewState<List<Movie>>> { viewstate ->
+                when (viewstate) {
+                    is Loading -> {
+                        movieRefreshLayout.isRefreshing = true
+                    }
+                    is Error -> {
+                        movieRefreshLayout.isRefreshing = false
+                        // TODO : Show error message
+                    }
+                    is Success -> {
+                        movieRefreshLayout.isRefreshing = false
+                        if(!viewstate.data.isNullOrEmpty()){
+                            movieList.clear()
+                            movieList.addAll(viewstate.data)
 
-                    movieListAdapter.notifyDataSetChanged()
+                            movieListAdapter.notifyDataSetChanged()
+                        }
+                    }
                 }
             })
         return view
@@ -58,6 +73,6 @@ class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener  {
      * Called when a swipe gesture triggers a refresh.
      */
     override fun onRefresh() {
-        //viewModel.getMovies()
+        viewModel.fetchMovies()
     }
 }
