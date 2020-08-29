@@ -25,8 +25,8 @@ class MovieListAdapter(private val context : Context, private val movieList : Li
 
 
     override fun onBindViewHolder(holder: MovieListItemViewHolder, position: Int) {
-        holder.movieImageView.load(movieList[position].mMovieImageUri.buildImageUri())
-        holder.movieNameTextView.text = movieList[position].mMovieName
+        holder.movieImageView.load(movieList[position].movieImageUri.buildImageUri())
+        holder.movieNameTextView.text = movieList[position].movieName
         holder.moviePriceTextView.text = "$19.99"
     }
 }
