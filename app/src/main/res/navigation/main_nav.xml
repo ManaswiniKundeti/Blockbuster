@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/moviesListFragment">
+    <fragment
+        android:id="@+id/moviesListFragment"
+        android:name="com.bb.blockbuster.view.fragment.MoviesListFragment"
+        android:label="fragment_movies_list"
+        tools:layout="@layout/fragment_movies_list" />
+</navigation>
