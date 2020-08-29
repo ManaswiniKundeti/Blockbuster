@@ -7,9 +7,8 @@ import retrofit2.Retrofit
 import retrofit2.Response
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
 
-fun createTmdbService() : ITmdbService{
+fun createTmdbService() : IApiService{
 
     val okHttpClient = OkHttpClient
         .Builder()
@@ -21,16 +20,12 @@ fun createTmdbService() : ITmdbService{
         .addConverterFactory(MoshiConverterFactory.create())
         .build()
 
-    return retrofit.create(ITmdbService::class.java)
+    return retrofit.create(IApiService::class.java)
 }
 
-interface ITmdbService {
+interface IApiService {
 
     @GET("popular?api_key=${BuildConfig.TMDB_API_KEY}")
     suspend fun fetchMoviesList() : Response<MovieResult>
 
-//    @GET(
-//    fun fetchMovieDetails(
-//        @Path("movieId") movieId : String) : retrofit2.Response<Movie>
-//    )
 }

@@ -6,10 +6,10 @@ import com.squareup.moshi.Json
 
 @Entity
 data class Movie (
-    @field:Json(name = "title") @PrimaryKey val mMovieName: String,
-    @field:Json(name = "poster_path") val mMovieImageUri : String,
-    @field:Json(name = "id") val mMovieId : String,
-    @field:Json(name = "overview") val mMovieOverview : String,
-    @field:Json(name = "vote_average") val mMovieRating : String,
-    @field:Json(name = "release_date") val mMovieReleaseDate : String
+    @field:Json(name = "id") @PrimaryKey val movieId : Int,
+    @field:Json(name = "title") val movieName: String,
+    @field:Json(name = "poster_path") val movieImageUri : String,
+    @field:Json(name = "overview") val movieOverview : String,
+    @field:Json(name = "vote_average") val movieRating : String,
+    @field:Json(name = "release_date") val movieReleaseDate : String
 )
