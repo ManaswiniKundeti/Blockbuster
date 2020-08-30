@@ -1,5 +1,6 @@
 package com.bb.blockbuster.viewmodel
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +13,7 @@ import com.bb.blockbuster.viewstate.Success
 import com.bb.blockbuster.viewstate.ViewState
 import kotlinx.coroutines.launch
 
-class MoviesListViewModel(private val movieRepository :MovieRepository) : ViewModel() {
+class MoviesListViewModel @ViewModelInject constructor(private val movieRepository : MovieRepository) : ViewModel() {
 
     private val _movieListLiveData : MutableLiveData<ViewState<List<Movie>>> = MutableLiveData()
     val movieListLiveData : LiveData<ViewState<List<Movie>>> = _movieListLiveData

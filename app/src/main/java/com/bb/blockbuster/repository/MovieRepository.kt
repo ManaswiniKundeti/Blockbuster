@@ -4,8 +4,9 @@ import com.bb.blockbuster.model.Cart
 import com.bb.blockbuster.model.Movie
 import com.bb.blockbuster.network.IApiService
 import com.bb.blockbuster.persistence.AppDatabase
+import javax.inject.Inject
 
-class MovieRepository(private val apiService : IApiService, private val appDatabase : AppDatabase) {
+class MovieRepository @Inject constructor(private val apiService : IApiService, private val appDatabase : AppDatabase) {
 
     suspend fun fetchMovies():List<Movie> {
         try {

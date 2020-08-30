@@ -6,10 +6,8 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bb.blockbuster.R
@@ -18,19 +16,17 @@ import com.bb.blockbuster.extensions.show
 import com.bb.blockbuster.model.Movie
 import com.bb.blockbuster.view.adapter.MovieListAdapter
 import com.bb.blockbuster.viewmodel.MoviesListViewModel
-import com.bb.blockbuster.viewmodel.ViewModelFactory
 import com.bb.blockbuster.viewstate.Error
 import com.bb.blockbuster.viewstate.Loading
 import com.bb.blockbuster.viewstate.Success
 import com.bb.blockbuster.viewstate.ViewState
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_movies_list.*
 
+@AndroidEntryPoint
 class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, MovieListAdapter.IItemClickListener  {
 
-    private val viewmodelFactory by lazy { ViewModelFactory(requireContext()) }
-    private val viewModel: MoviesListViewModel by viewModels {
-        viewmodelFactory
-    }
+    private val viewModel: MoviesListViewModel by viewModels()
 
     private val movieList = mutableListOf<Movie>()
 

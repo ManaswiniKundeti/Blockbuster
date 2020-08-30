@@ -8,21 +8,6 @@ import retrofit2.Response
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-fun createApiService() : IApiService {
-
-    val okHttpClient = OkHttpClient
-        .Builder()
-        .build()
-
-    val retrofit = Retrofit.Builder()
-        .client(okHttpClient)
-        .baseUrl("https://api.themoviedb.org/3/movie/")
-        .addConverterFactory(MoshiConverterFactory.create())
-        .build()
-
-    return retrofit.create(IApiService::class.java)
-}
-
 interface IApiService {
 
     @GET("popular?api_key=${BuildConfig.TMDB_API_KEY}")
