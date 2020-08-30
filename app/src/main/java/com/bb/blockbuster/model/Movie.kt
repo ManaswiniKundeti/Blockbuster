@@ -12,5 +12,8 @@ data class Movie (
     @field:Json(name = "overview") val movieOverview : String,
     @field:Json(name = "vote_average") val movieRating : Float,
     @field:Json(name = "release_date") val movieReleaseDate : String,
-    @field:Json(name = "vote_count") val movieVoteCount : Int
+    @field:Json(name = "vote_count") val movieVoteCount : Int,
+    var moviePrice: Float
 )
+
+

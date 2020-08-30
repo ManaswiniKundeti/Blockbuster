@@ -52,6 +52,8 @@ class CartFragment : Fragment() {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_cart, container, false)
 
+        val cartTotalTextView : TextView = view.findViewById(R.id.total_price_text_view)
+
         val cartRecyclerView : RecyclerView = view.findViewById(R.id.cart_recycler_view)
         cartRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
@@ -69,24 +71,43 @@ class CartFragment : Fragment() {
                 }
                 is Success -> {
                     cart_progress_bar.hide()
-                    if(!viewstate.data.isNullOrEmpty()){
-                        cartMoviesList.clear()
-                        cartMoviesList.addAll(viewstate.data)
+                    cartMoviesList.clear()
+                    cartMoviesList.addAll(viewstate.data)
+
+                    if (viewstate.data.isEmpty()) {
+                        toggleView(true)
+                    } else {
+                        var totalPrice = 0f
+                        viewstate.data.forEach { movie ->
+                            totalPrice += movie.moviePrice
+                        }
+                        cartTotalTextView.text =  getString(R.string.str_total_price, totalPrice)
 
                         cartListAdapter.notifyDataSetChanged()
+                        toggleView(false)
                     }
                 }
             }
         })
 
-        val cartTotalTextView : TextView = view.findViewById(R.id.total_price_text_view)
-        cartTotalTextView.text =  getString(R.string.str_total_price, "59.96")
-
         return view
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.fetchCartMovies()
+    private fun toggleView(isCartEmpty: Boolean) {
+        if (isCartEmpty) {
+            cart_recycler_view.hide()
+            cart_separator_view.hide()
+            total_price_text_view.hide()
+
+            empty_cart_image_view.show()
+            empty_cart_text_view.show()
+        } else {
+            cart_recycler_view.show()
+            cart_separator_view.show()
+            total_price_text_view.show()
+
+            empty_cart_image_view.hide()
+            empty_cart_text_view.hide()
+        }
     }
 }

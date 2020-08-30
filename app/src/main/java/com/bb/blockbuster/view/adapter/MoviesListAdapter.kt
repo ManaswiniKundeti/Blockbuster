@@ -43,7 +43,7 @@ class MovieListAdapter(private val context : Context,
             transformations(RoundedCornersTransformation())
         }
         holder.movieNameTextView.text = movieList[position].movieName
-        holder.moviePriceTextView.text = "$19.99"
+        holder.moviePriceTextView.text = context.getString(R.string.str_movie_price, movieList[position].moviePrice)
 
         holder.itemView.setOnClickListener {
              itemClickListener.onItemClick(movieList[position])

@@ -74,7 +74,7 @@ class MovieDetailFragment : Fragment() {
                     vote_count_text_view.text = getString(R.string.str_vote_count, movieDetail.movieVoteCount.toString())
                     release_date_text_view.text = getString(R.string.str_released_on, movieDetail.movieReleaseDate)
                     overview_text_view.text = movieDetail.movieOverview
-                    cart_button.text = getString(R.string.str_add_to_cart, "19.99")
+                    cart_button.text = getString(R.string.str_add_to_cart, movieDetail.moviePrice)
                 }
                 is Loading -> {
                     movie_detail_progress_bar.show()
@@ -95,10 +95,6 @@ class MovieDetailFragment : Fragment() {
         return view
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.fetchMovieById(args.movieId)
-    }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_cart, menu)
         super.onCreateOptionsMenu(menu, inflater)

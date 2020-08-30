@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bb.blockbuster.model.Movie
 import com.bb.blockbuster.repository.MovieRepository
-import com.bb.blockbuster.viewstate.Error
 import com.bb.blockbuster.viewstate.Loading
 import com.bb.blockbuster.viewstate.Success
 import com.bb.blockbuster.viewstate.ViewState
@@ -20,15 +19,11 @@ class CartListViewModel(private val movieRepository: MovieRepository) : ViewMode
         fetchCartMovies()
     }
 
-    fun fetchCartMovies() {
+    private fun fetchCartMovies() {
         _cartMovieListLiveData.value = Loading
         viewModelScope.launch {
             val cartMoviesList = movieRepository.fetchCartDetails()
-            if (cartMoviesList.isNullOrEmpty()) {
-                _cartMovieListLiveData.postValue(Error("Could not load cart movies details"))
-            } else {
-                _cartMovieListLiveData.postValue(Success(cartMoviesList))
-            }
+            _cartMovieListLiveData.postValue(Success(cartMoviesList))
         }
     }
 }

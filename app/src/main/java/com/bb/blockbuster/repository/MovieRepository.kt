@@ -12,6 +12,10 @@ class MovieRepository(private val apiService : IApiService, private val appDatab
         return if (apiResponse.isSuccessful && apiResponse.body() != null) {
             val apiMovieList = apiResponse.body()!!.movieList
 
+            apiMovieList.forEach { movie ->
+                movie.moviePrice = getRandomPrice()
+            }
+
             // Inserting in Database
             appDatabase.movieDao().insertMovies(apiMovieList)
             appDatabase.movieDao().getMovies()
@@ -31,5 +35,7 @@ class MovieRepository(private val apiService : IApiService, private val appDatab
     suspend fun fetchCartDetails() : List<Movie>{
         return appDatabase.cartDao().getCartDetails()
     }
+
+    private fun getRandomPrice() = ((5..9).random() + 0.99).toFloat()
 
 }

@@ -32,7 +32,7 @@ class CartListAdapter(private val context : Context,
         }
         holder.movieNameTextView.text = cartMovieList[position].movieName
         holder.movieRatingBar.rating = cartMovieList[position].movieRating/2
-        holder.moviePriceTextView.text = "$19.99"
+        holder.moviePriceTextView.text = context.getString(R.string.str_movie_price, cartMovieList[position].moviePrice)
     }
 }
 class CartListItemViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
