@@ -14,14 +14,14 @@ The app also uses <b>Konfetti</b> to celebrate when movies are added to the cart
 </br>
 
 <p align="center">
-<img src="/previews/app_start_no_internet.jpeg" width=200/>
-<img src = "/previews/movies_list_portrait.jpeg" width=200 />
-<img src = "/previews/movie_details_portrait.jpeg" width=200 />
-<img src = "/previews/empty_cart.jpeg" width=200 />
-<img src = "/previews/added_to_cart.jpeg" width=200 />
-<img src = "/previews/cart_portrait.jpeg" width=200 />
-<img src = "/previews/movies_list_landscape.jpeg" width=300 />
-<img src = "/previews/movie_details_landscape.jpeg" width=300 />
+<img src="/previews/app_start_no_internet.jpeg" width=400/>
+<img src = "/previews/movies_list_portrait.jpeg" width=400 />
+<img src = "/previews/movie_details_portrait.jpeg" width=400 />
+<img src = "/previews/empty_cart.jpeg" width=400 />
+<img src = "/previews/added_to_cart.jpeg" width=400 />
+<img src = "/previews/cart_portrait.jpeg" width=400 />
+<img src = "/previews/movies_list_landscape.jpeg" width=400 />
+<img src = "/previews/movie_details_landscape.jpeg" width=400 />
 </p>
 
 ## Download
