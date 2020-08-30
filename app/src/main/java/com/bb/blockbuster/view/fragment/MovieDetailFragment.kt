@@ -18,24 +18,21 @@ import com.bb.blockbuster.extensions.buildImageUri
 import com.bb.blockbuster.extensions.hide
 import com.bb.blockbuster.extensions.show
 import com.bb.blockbuster.viewmodel.MovieDetailViewModel
-import com.bb.blockbuster.viewmodel.ViewModelFactory
 import com.bb.blockbuster.viewstate.Error
 import com.bb.blockbuster.viewstate.Loading
 import com.bb.blockbuster.viewstate.Success
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
 import nl.dionsegijn.konfetti.KonfettiView
 import nl.dionsegijn.konfetti.models.Shape
 import nl.dionsegijn.konfetti.models.Size
 
-
+@AndroidEntryPoint
 class MovieDetailFragment : Fragment() {
 
     private val args : MovieDetailFragmentArgs by navArgs()
 
-    private val viewmodelFactory by lazy { ViewModelFactory(requireContext()) }
-    private val viewModel: MovieDetailViewModel by viewModels {
-        viewmodelFactory
-    }
+    private val viewModel: MovieDetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

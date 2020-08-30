@@ -2,12 +2,12 @@ package com.bb.blockbuster.view.fragment
 
 import android.os.Bundle
 import android.transition.TransitionInflater
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,23 +17,17 @@ import com.bb.blockbuster.extensions.hide
 import com.bb.blockbuster.extensions.show
 import com.bb.blockbuster.model.Movie
 import com.bb.blockbuster.view.adapter.CartListAdapter
-import com.bb.blockbuster.view.adapter.MovieListAdapter
 import com.bb.blockbuster.viewmodel.CartListViewModel
-import com.bb.blockbuster.viewmodel.MoviesListViewModel
-import com.bb.blockbuster.viewmodel.ViewModelFactory
 import com.bb.blockbuster.viewstate.Error
 import com.bb.blockbuster.viewstate.Loading
 import com.bb.blockbuster.viewstate.Success
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_cart.*
-import kotlinx.android.synthetic.main.fragment_movie_detail.*
 
-
+@AndroidEntryPoint
 class CartFragment : Fragment() {
 
-    private val viewmodelFactory by lazy { ViewModelFactory(requireContext()) }
-    private val viewModel: CartListViewModel by viewModels {
-        viewmodelFactory
-    }
+    private val viewModel: CartListViewModel by viewModels()
 
     private val cartMoviesList = mutableListOf<Movie>()
 
