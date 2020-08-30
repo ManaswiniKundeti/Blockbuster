@@ -14,6 +14,8 @@ import coil.api.load
 import coil.transform.RoundedCornersTransformation
 import com.bb.blockbuster.R
 import com.bb.blockbuster.extensions.buildImageUri
+import com.bb.blockbuster.extensions.hide
+import com.bb.blockbuster.extensions.show
 import com.bb.blockbuster.viewmodel.MovieDetailViewModel
 import com.bb.blockbuster.viewmodel.ViewModelFactory
 import com.bb.blockbuster.viewstate.Error
@@ -59,6 +61,7 @@ class MovieDetailFragment : Fragment() {
         viewModel.movieLiveData.observe(viewLifecycleOwner, Observer { viewstate->
             when(viewstate) {
                 is Success -> {
+                    movie_detail_progress_bar.hide()
                     val movieDetail = viewstate.data
                     movie_detail_image_view.load(movieDetail.movieImageUri.buildImageUri()) {
                         transformations(RoundedCornersTransformation())
@@ -70,8 +73,13 @@ class MovieDetailFragment : Fragment() {
                     overview_text_view.text = movieDetail.movieOverview
                     cart_button.text = getString(R.string.str_add_to_cart, "19.99")
                 }
-                is Loading -> {}
-                is Error -> {}
+                is Loading -> {
+                    movie_detail_progress_bar.show()
+                }
+                is Error -> {
+                    movie_detail_progress_bar.hide()
+                    Toast.makeText(requireContext(), viewstate.errMsg, Toast.LENGTH_SHORT).show()
+                }
             }
         })
         viewModel.fetchMovieById(args.movieId)
@@ -84,6 +92,10 @@ class MovieDetailFragment : Fragment() {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.fetchMovieById(args.movieId)
+    }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_cart, menu)
         super.onCreateOptionsMenu(menu, inflater)

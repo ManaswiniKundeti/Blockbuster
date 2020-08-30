@@ -7,11 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bb.blockbuster.R
+import com.bb.blockbuster.extensions.hide
+import com.bb.blockbuster.extensions.show
 import com.bb.blockbuster.model.Movie
 import com.bb.blockbuster.view.adapter.CartListAdapter
 import com.bb.blockbuster.view.adapter.MovieListAdapter
@@ -21,6 +24,8 @@ import com.bb.blockbuster.viewmodel.ViewModelFactory
 import com.bb.blockbuster.viewstate.Error
 import com.bb.blockbuster.viewstate.Loading
 import com.bb.blockbuster.viewstate.Success
+import kotlinx.android.synthetic.main.fragment_cart.*
+import kotlinx.android.synthetic.main.fragment_movie_detail.*
 
 
 class CartFragment : Fragment() {
@@ -56,12 +61,14 @@ class CartFragment : Fragment() {
         viewModel.cartMovieListLiveData.observe(viewLifecycleOwner, Observer { viewstate ->
             when(viewstate){
                 is Loading -> {
-                    //TODO : progress bar
+                    cart_progress_bar.show()
                 }
                 is Error -> {
-                    ///TODO :progress bar
+                    cart_progress_bar.hide()
+                    Toast.makeText(requireContext(), viewstate.errMsg, Toast.LENGTH_SHORT).show()
                 }
                 is Success -> {
+                    cart_progress_bar.hide()
                     if(!viewstate.data.isNullOrEmpty()){
                         cartMoviesList.clear()
                         cartMoviesList.addAll(viewstate.data)
@@ -76,5 +83,10 @@ class CartFragment : Fragment() {
         cartTotalTextView.text =  getString(R.string.str_total_price, "59.96")
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.fetchCartMovies()
     }
 }
