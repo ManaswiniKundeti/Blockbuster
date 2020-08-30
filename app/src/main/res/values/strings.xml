@@ -7,7 +7,10 @@
     <string name="str_add_to_cart">Add to Cart ($%1$s)</string>
     <string name="str_vote_count">(%1$s)</string>
     <string name="str_overview">Overview</string>
-    <string name="str_released_on">Release on %1$s</string>
+    <string name="str_released_on">Released on %1$s</string>
     <string name="str_cart_title">Your Cart</string>
     <string name="str_total_price">TOTAL : $%1$s</string>
+
+    <!-- Accessibility string -->
+    <string name="str_movie_poster_description">Movie poster of %1$s</string>
 </resources>

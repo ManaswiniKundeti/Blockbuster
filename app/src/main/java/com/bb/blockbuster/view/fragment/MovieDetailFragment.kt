@@ -66,6 +66,9 @@ class MovieDetailFragment : Fragment() {
                     movie_detail_image_view.load(movieDetail.movieImageUri.buildImageUri()) {
                         transformations(RoundedCornersTransformation())
                     }
+                    // Adding accessibility support
+                    movie_detail_image_view.contentDescription = getString(R.string.str_movie_poster_description, movieDetail.movieName)
+
                     movie_detail_name_text_view.text = movieDetail.movieName
                     movie_detail_rating_bar.rating = movieDetail.movieRating / 2
                     vote_count_text_view.text = getString(R.string.str_vote_count, movieDetail.movieVoteCount.toString())
