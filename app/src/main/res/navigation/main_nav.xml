@@ -13,6 +13,9 @@
             android:id="@+id/action_moviesListFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment">
         </action>
+        <action
+            android:id="@+id/action_moviesListFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
@@ -23,5 +26,13 @@
             android:name="movieId"
             app:argType="integer"
             android:defaultValue="605116" />
+        <action
+            android:id="@+id/action_movieDetailFragment_to_cartFragment2"
+            app:destination="@id/cartFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.bb.blockbuster.view.fragment.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>

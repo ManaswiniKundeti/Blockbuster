@@ -1,5 +1,6 @@
 package com.bb.blockbuster.repository
 
+import com.bb.blockbuster.model.Cart
 import com.bb.blockbuster.model.Movie
 import com.bb.blockbuster.network.IApiService
 import com.bb.blockbuster.persistence.AppDatabase
@@ -22,4 +23,13 @@ class MovieRepository(private val apiService : IApiService, private val appDatab
     suspend fun fetchMovieById(movieId : Int) : Movie{
         return appDatabase.movieDao().getMovieById(movieId)
     }
+
+    suspend fun addToCart(movieId : Int){
+        appDatabase.cartDao().insertCart(Cart(movieId))
+    }
+
+    suspend fun fetchCartDetails() : List<Movie>{
+        return appDatabase.cartDao().getCartDetails()
+    }
+
 }

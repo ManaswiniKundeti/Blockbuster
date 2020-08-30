@@ -1,12 +1,11 @@
 package com.bb.blockbuster.view.fragment
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +27,11 @@ class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Mov
     }
 
     private val movieList = mutableListOf<Movie>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,5 +84,21 @@ class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Mov
     override fun onItemClick(movie: Movie) {
         val navDirection = MoviesListFragmentDirections.actionMoviesListFragmentToMovieDetailFragment(movie.movieId)
         findNavController().navigate(navDirection)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_cart, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.cart_menu_item -> {
+                val navDirections = MoviesListFragmentDirections.actionMoviesListFragmentToCartFragment()
+                findNavController().navigate(navDirections)
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
