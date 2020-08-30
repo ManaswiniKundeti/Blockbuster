@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -47,6 +48,8 @@ class MovieListAdapter(private val context : Context,
         holder.itemView.setOnClickListener {
              itemClickListener.onItemClick(movieList[position])
         }
+
+        holder.movieRatingBar.rating = movieList[position].movieRating / 2
     }
 }
 
@@ -55,4 +58,5 @@ class MovieListItemViewHolder(itemView : View) : RecyclerView.ViewHolder(itemVie
     val movieImageView : ImageView = itemView.findViewById(R.id.movie_item_image_view)
     val movieNameTextView : TextView = itemView.findViewById(R.id.movie_name_text_view)
     val moviePriceTextView : TextView = itemView.findViewById(R.id.rent_price_text_view)
+    val movieRatingBar : RatingBar = itemView.findViewById(R.id.movie_rating_bar)
 }

@@ -82,11 +82,6 @@ class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Mov
         return view
     }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.fetchMovies()
-    }
-
     /**
      * Called when a swipe gesture triggers a refresh.
      */
