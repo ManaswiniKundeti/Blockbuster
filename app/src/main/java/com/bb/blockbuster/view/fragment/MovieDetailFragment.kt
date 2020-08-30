@@ -1,5 +1,6 @@
 package com.bb.blockbuster.view.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.*
@@ -22,6 +23,9 @@ import com.bb.blockbuster.viewstate.Error
 import com.bb.blockbuster.viewstate.Loading
 import com.bb.blockbuster.viewstate.Success
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
+import nl.dionsegijn.konfetti.KonfettiView
+import nl.dionsegijn.konfetti.models.Shape
+import nl.dionsegijn.konfetti.models.Size
 
 
 class MovieDetailFragment : Fragment() {
@@ -56,7 +60,8 @@ class MovieDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_movie_detail, container, false)
 
-        val cart_button = view.findViewById<Button>(R.id.add_to_cart_button)
+        val cartButton = view.findViewById<Button>(R.id.add_to_cart_button)
+        val konfettiView = view.findViewById<KonfettiView>(R.id.detail_fragment_konfetti_view)
 
         viewModel.movieLiveData.observe(viewLifecycleOwner, Observer { viewstate->
             when(viewstate) {
@@ -74,7 +79,7 @@ class MovieDetailFragment : Fragment() {
                     vote_count_text_view.text = getString(R.string.str_vote_count, movieDetail.movieVoteCount.toString())
                     release_date_text_view.text = getString(R.string.str_released_on, movieDetail.movieReleaseDate)
                     overview_text_view.text = movieDetail.movieOverview
-                    cart_button.text = getString(R.string.str_add_to_cart, movieDetail.moviePrice)
+                    cartButton.text = getString(R.string.str_add_to_cart, movieDetail.moviePrice)
                 }
                 is Loading -> {
                     movie_detail_progress_bar.show()
@@ -87,9 +92,20 @@ class MovieDetailFragment : Fragment() {
         })
         viewModel.fetchMovieById(args.movieId)
 
-        cart_button.setOnClickListener {
+        cartButton.setOnClickListener {
             viewModel.addToCart(args.movieId)
-            Toast.makeText(activity,"Added to Cart successfully", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity,"Successfully Added to Cart", Toast.LENGTH_LONG).show()
+
+            konfettiView.build()
+                .addColors(Color.WHITE, Color.BLUE, Color.RED)
+                .setDirection(0.0, 359.0)
+                .setSpeed(1f, 5f)
+                .setFadeOutEnabled(true)
+                .setTimeToLive(2000L)
+                .addShapes(Shape.Square, Shape.Circle)
+                .addSizes(Size(12))
+                .setPosition(-50f, konfettiView.width + 50f, -50f, -50f)
+                .streamFor(300, 3000L)
         }
 
         return view
