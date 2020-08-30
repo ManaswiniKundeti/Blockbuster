@@ -94,7 +94,7 @@ class MovieDetailFragment : Fragment() {
 
         cartButton.setOnClickListener {
             viewModel.addToCart(args.movieId)
-            Toast.makeText(activity,"Successfully Added to Cart", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity,getString(R.string.str_add_to_cart_toast_message), Toast.LENGTH_LONG).show()
 
             konfettiView.build()
                 .addColors(Color.WHITE, Color.BLUE, Color.RED)

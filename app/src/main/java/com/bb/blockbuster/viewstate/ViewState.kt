@@ -1,7 +1,5 @@
 package com.bb.blockbuster.viewstate
 
-import java.lang.StringBuilder
-
 sealed class ViewState<out T>
 
 class Success<out T>(val data: T) : ViewState<T>()

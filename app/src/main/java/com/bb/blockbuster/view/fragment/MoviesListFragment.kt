@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -57,7 +58,7 @@ class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Mov
 
         //display and update recycler view
         val movieRecyclerView : RecyclerView = view.findViewById(R.id.movies_recycler_view)
-        movieRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        movieRecyclerView.layoutManager = GridLayoutManager(requireContext(), resources.getInteger(R.integer.grid_span_count))
 
         val movieListAdapter = MovieListAdapter(requireContext(), movieList, this)
         movieRecyclerView.adapter = movieListAdapter
