@@ -39,7 +39,7 @@
     <RatingBar
         android:id="@+id/cart_rating_bar"
         style="@android:style/Widget.Material.RatingBar.Small"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:accessibilityLiveRegion="none"
@@ -49,6 +49,7 @@
         android:rating="3"
         app:layout_constraintBottom_toBottomOf="@+id/cart_movie_image_view"
         app:layout_constraintEnd_toEndOf="@+id/cart_movie_name_text_view"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/cart_movie_name_text_view" />
 
     <TextView
