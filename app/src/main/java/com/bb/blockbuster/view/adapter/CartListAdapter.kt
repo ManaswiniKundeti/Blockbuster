@@ -31,11 +31,11 @@ class CartListAdapter(private val context : Context,
             transformations(RoundedCornersTransformation())
         }
         holder.movieNameTextView.text = cartMovieList[position].movieName
-        holder.movieRatingBar.rating = cartMovieList[position].movieRating/2
+        holder.movieRatingBar.rating = cartMovieList[position].movieRating / 2
         holder.moviePriceTextView.text = context.getString(R.string.str_movie_price, cartMovieList[position].moviePrice)
     }
 }
-class CartListItemViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+class CartListItemViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     val movieImageView : ImageView = itemView.findViewById(R.id.cart_movie_image_view)
     val movieNameTextView : TextView = itemView.findViewById(R.id.cart_movie_name_text_view)
     val movieRatingBar : RatingBar = itemView.findViewById(R.id.cart_rating_bar)

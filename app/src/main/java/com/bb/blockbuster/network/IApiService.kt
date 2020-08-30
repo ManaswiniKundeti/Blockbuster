@@ -8,7 +8,7 @@ import retrofit2.Response
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-fun createTmdbService() : IApiService{
+fun createApiService() : IApiService {
 
     val okHttpClient = OkHttpClient
         .Builder()

@@ -2,11 +2,11 @@ package com.bb.blockbuster.extensions
 
 import android.view.View
 
-fun View.show(){
+fun View.show() {
     visibility = View.VISIBLE
 }
 
-fun View.hide(){
+fun View.hide() {
     visibility = View.GONE
 }
 

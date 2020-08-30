@@ -54,7 +54,7 @@ class MovieListAdapter(private val context : Context,
 }
 
 
-class MovieListItemViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+class MovieListItemViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
     val movieImageView : ImageView = itemView.findViewById(R.id.movie_item_image_view)
     val movieNameTextView : TextView = itemView.findViewById(R.id.movie_name_text_view)
     val moviePriceTextView : TextView = itemView.findViewById(R.id.rent_price_text_view)

@@ -25,7 +25,7 @@ class MovieDetailViewModel(private val movieRepository : MovieRepository) : View
         }
     }
 
-    fun addToCart(movieId : Int){
+    fun addToCart(movieId : Int) {
         viewModelScope.launch {
             movieRepository.addToCart(movieId)
         }

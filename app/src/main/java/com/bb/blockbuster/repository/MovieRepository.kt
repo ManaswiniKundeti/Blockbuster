@@ -7,7 +7,7 @@ import com.bb.blockbuster.persistence.AppDatabase
 
 class MovieRepository(private val apiService : IApiService, private val appDatabase : AppDatabase) {
 
-    suspend fun fetchMovies():List<Movie>{
+    suspend fun fetchMovies():List<Movie> {
         try {
             val apiResponse = apiService.fetchMoviesList()
             return if (apiResponse.isSuccessful && apiResponse.body() != null) {
@@ -28,15 +28,15 @@ class MovieRepository(private val apiService : IApiService, private val appDatab
         }
     }
 
-    suspend fun fetchMovieById(movieId : Int) : Movie{
+    suspend fun fetchMovieById(movieId : Int) : Movie {
         return appDatabase.movieDao().getMovieById(movieId)
     }
 
-    suspend fun addToCart(movieId : Int){
+    suspend fun addToCart(movieId : Int) {
         appDatabase.cartDao().insertCart(Cart(movieId))
     }
 
-    suspend fun fetchCartDetails() : List<Movie>{
+    suspend fun fetchCartDetails() : List<Movie> {
         return appDatabase.cartDao().getCartDetails()
     }
 
