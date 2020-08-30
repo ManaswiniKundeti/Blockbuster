@@ -47,8 +47,8 @@ Go to the [Releases](https://github.com/ManaswiniKundeti/Blockbuster/releases) t
 - Architecture
   - MVVM Architecture (View - ViewModel - Model)
   - Repository pattern
-- [Retrofit2](https://github.com/square/retrofit).
-- [Moshi](https://github.com/square/moshi/).
+- [Retrofit2](https://github.com/square/retrofit)
+- [Moshi](https://github.com/square/moshi/)
 - [Coil](https://github.com/coil-kt/coil)
 - [Hilt](https://dagger.dev/hilt/)
 - [Konfetti](https://github.com/DanielMartinus/Konfetti)
