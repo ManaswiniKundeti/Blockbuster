@@ -12,13 +12,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bb.blockbuster.R
+import com.bb.blockbuster.extensions.hide
+import com.bb.blockbuster.extensions.show
 import com.bb.blockbuster.model.Movie
 import com.bb.blockbuster.view.adapter.MovieListAdapter
 import com.bb.blockbuster.viewmodel.MoviesListViewModel
 import com.bb.blockbuster.viewmodel.ViewModelFactory
+import com.bb.blockbuster.viewstate.Error
 import com.bb.blockbuster.viewstate.Loading
 import com.bb.blockbuster.viewstate.Success
 import com.bb.blockbuster.viewstate.ViewState
+import kotlinx.android.synthetic.main.fragment_movies_list.*
 
 class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, MovieListAdapter.IItemClickListener  {
 
@@ -66,20 +70,33 @@ class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Mov
                     }
                     is Error -> {
                         movieRefreshLayout.isRefreshing = false
-                        // TODO : Show error message
+                        toggleView(true)
                     }
                     is Success -> {
                         movieRefreshLayout.isRefreshing = false
-                        if(!viewstate.data.isNullOrEmpty()){
-                            movieList.clear()
-                            movieList.addAll(viewstate.data)
+                        movieList.clear()
+                        movieList.addAll(viewstate.data)
 
-                            movieListAdapter.notifyDataSetChanged()
-                        }
+                        movieListAdapter.notifyDataSetChanged()
+                        toggleView(false)
                     }
                 }
             })
         return view
+    }
+
+    private fun toggleView(isEmpty: Boolean) {
+        if (isEmpty) {
+            empty_movies_list_image_view.show()
+            empty_movies_list_text_view.show()
+
+            movies_recycler_view.hide()
+        } else {
+            empty_movies_list_image_view.hide()
+            empty_movies_list_text_view.hide()
+
+            movies_recycler_view.show()
+        }
     }
 
     /**

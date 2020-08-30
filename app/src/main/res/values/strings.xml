@@ -6,6 +6,9 @@
     <!-- Common Strings -->
     <string name="str_movie_price">$%1$.2f</string>
 
+    <!-- Listing Fragment String -->
+    <string name="str_empty_movies_list">Oops! Blockbuster could not load any movies. Make sure you are connected to the internet for the first time you open the app</string>
+
     <!-- Detail Fragment Strings -->
     <string name="str_add_to_cart">Add to Cart ($%1$.2f)</string>
     <string name="str_vote_count">(%1$s)</string>
@@ -19,4 +22,5 @@
 
     <!-- Accessibility string -->
     <string name="str_movie_poster_description">Movie poster of %1$s</string>
+    <string name="str_no_movies_loaded">App icon</string>
 </resources>
