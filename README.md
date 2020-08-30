@@ -30,9 +30,10 @@ Go to the [Releases](https://github.com/ManaswiniKundeti/Blockbuster/releases) t
 <img src="/previews/Blockbuster.gif" align="right" width="32%"/>
 
 ## App Features
-- Movie rental collection: Users can view their favorite movies on the home page.
-- Movie Details ⭐️: Users can view the movie details they are most interested.
-- Cart: Users can add movies to their cart which can be viewed by clicking on the cart menu icon
+- Movies Collection: Users can view all the movies that are available for rent on the home page.
+- Movie Details: On clicking on the movie, users can view the movie details in a separate page.
+- Add to cart: On viewing the details, the users can add the movie to their cart.
+- View cart: Users can view their shopping cart items by clicking on the cart menu icon on the toolbar.
 
 ## Open-source libraries
 - Minimum SDK level 23
