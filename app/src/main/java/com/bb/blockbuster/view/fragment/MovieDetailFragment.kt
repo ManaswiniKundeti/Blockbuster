@@ -1,7 +1,7 @@
 package com.bb.blockbuster.view.fragment
 
-import android.app.Activity
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.*
 import android.widget.Button
 import android.widget.Toast
@@ -15,7 +15,6 @@ import coil.transform.RoundedCornersTransformation
 import com.bb.blockbuster.R
 import com.bb.blockbuster.extensions.buildImageUri
 import com.bb.blockbuster.viewmodel.MovieDetailViewModel
-import com.bb.blockbuster.viewmodel.MoviesListViewModel
 import com.bb.blockbuster.viewmodel.ViewModelFactory
 import com.bb.blockbuster.viewstate.Error
 import com.bb.blockbuster.viewstate.Loading
@@ -25,7 +24,7 @@ import kotlinx.android.synthetic.main.fragment_movie_detail.*
 
 class MovieDetailFragment : Fragment() {
 
-    val args : MovieDetailFragmentArgs by navArgs()
+    private val args : MovieDetailFragmentArgs by navArgs()
 
     private val viewmodelFactory by lazy { ViewModelFactory(requireContext()) }
     private val viewModel: MovieDetailViewModel by viewModels {
@@ -34,7 +33,18 @@ class MovieDetailFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //let fragment know there is a menu option
         setHasOptionsMenu(true)
+
+        //init inflater for transitions
+        val inflater =  TransitionInflater.from(requireContext())
+
+        //enter fragment transition
+        enterTransition = inflater.inflateTransition(R.transition.slide_right)
+
+        //exit fragment transition
+        exitTransition = inflater.inflateTransition(R.transition.slide_left)
     }
 
     override fun onCreateView(

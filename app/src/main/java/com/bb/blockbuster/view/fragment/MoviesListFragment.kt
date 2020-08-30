@@ -1,6 +1,7 @@
 package com.bb.blockbuster.view.fragment
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -30,7 +31,14 @@ class MoviesListFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener, Mov
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        //let fragment know there is a menu option
         setHasOptionsMenu(true)
+
+        //exit fragment transition
+        val inflater =  TransitionInflater.from(requireContext())
+        exitTransition = inflater.inflateTransition(R.transition.slide_left)
+
     }
 
     override fun onCreateView(

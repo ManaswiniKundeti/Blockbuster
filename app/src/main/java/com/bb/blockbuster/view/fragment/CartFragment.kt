@@ -1,6 +1,7 @@
 package com.bb.blockbuster.view.fragment
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +32,14 @@ class CartFragment : Fragment() {
 
     private val cartMoviesList = mutableListOf<Movie>()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        //enter fragment transition
+        val inflater =  TransitionInflater.from(requireContext())
+        enterTransition = inflater.inflateTransition(R.transition.slide_right)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,10 +56,10 @@ class CartFragment : Fragment() {
         viewModel.cartMovieListLiveData.observe(viewLifecycleOwner, Observer { viewstate ->
             when(viewstate){
                 is Loading -> {
-                    //progress bar
+                    //TODO : progress bar
                 }
                 is Error -> {
-                    //progress bar
+                    ///TODO :progress bar
                 }
                 is Success -> {
                     if(!viewstate.data.isNullOrEmpty()){
