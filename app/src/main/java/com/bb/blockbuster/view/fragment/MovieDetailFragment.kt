@@ -56,7 +56,7 @@ class MovieDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_movie_detail, container, false)
 
-        var cart_button = view.findViewById<Button>(R.id.add_to_cart_button)
+        val cart_button = view.findViewById<Button>(R.id.add_to_cart_button)
 
         viewModel.movieLiveData.observe(viewLifecycleOwner, Observer { viewstate->
             when(viewstate) {
