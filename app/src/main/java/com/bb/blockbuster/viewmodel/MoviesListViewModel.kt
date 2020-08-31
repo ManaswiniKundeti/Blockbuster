@@ -22,10 +22,10 @@ class MoviesListViewModel @ViewModelInject constructor(private val movieReposito
         fetchMovies()
     }
 
-    fun fetchMovies() {
+    fun fetchMovies(forceRefresh: Boolean = false) {
         _movieListLiveData.value = Loading
         viewModelScope.launch {
-            val movieList = movieRepository.fetchMovies()
+            val movieList = movieRepository.fetchMovies(forceRefresh)
             if (movieList.isNullOrEmpty()) {
                 _movieListLiveData.postValue(Error("Could not load movies"))
             } else {
