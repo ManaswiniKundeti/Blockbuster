@@ -27,8 +27,6 @@ The app also uses <b>Konfetti</b> to celebrate when movies are added to the cart
 ## Download
 Go to the [Releases](https://github.com/ManaswiniKundeti/Blockbuster/releases) to download the lastest APK.
 
-<img src="/previews/Blockbuster.gif" align="right" width="32%"/>
-
 ## App Features
 - Movies Collection: Users can view all the movies that are available for rent on the home page.
 - Movie Details: On clicking on the movie, users can view the movie details in a separate page.
