@@ -25,7 +25,7 @@ class MoviesListFragmentTest {
 
     @get:Rule
     val activityRule = ActivityTestRule(MainActivity::class.java, true,true)
-    
+
     @Test
     fun test_start_state() {
         Espresso.onView(withId(R.id.movie_refresh_layout))

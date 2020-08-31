@@ -19,6 +19,10 @@ class MovieDetailViewModel @ViewModelInject constructor(private val movieReposit
     val movieLiveData : LiveData<ViewState<Movie>> = _movieLiveData
 
     fun fetchMovieById(movieId : Int) {
+        if (_movieLiveData.value != null && (_movieLiveData.value is Success || _movieLiveData.value is Loading)) {
+            return
+        }
+
         _movieLiveData.value = Loading
         viewModelScope.launch {
             val movie = movieRepository.fetchMovieById(movieId)
