@@ -69,7 +69,7 @@ class CartDaoTest {
             movieList.add(movieOne)
             movieDao.insertMovies(movieList)
 
-            val cartOne = Cart(11)
+            val cartOne = Cart(12)
             cartDao.insertCart(cartOne)
             val cartsFromDb = cartDao.getCartDetails()
             Assert.assertTrue("Cart is not inserted", cartsFromDb.size == 1)

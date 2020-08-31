@@ -99,8 +99,8 @@ class MovieDaoTest {
             movieList.add(movieOne)
             movieDao.insertMovies(movieList)
 
-            val movieFromDb = movieDao.getMovieById(11)
-            assertTrue("Movies id not equal to 11", movieFromDb.movieId == 11)
+            val movieFromDb = movieDao.getMovieById(12)
+            assertTrue("Movies id not equal to 12", movieFromDb.movieId == 12)
         }
     }
 
