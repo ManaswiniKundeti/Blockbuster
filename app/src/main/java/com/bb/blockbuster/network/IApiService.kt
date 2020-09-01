@@ -12,5 +12,4 @@ interface IApiService {
 
     @GET("popular?api_key=${BuildConfig.TMDB_API_KEY}")
     suspend fun fetchMoviesList() : Response<MovieResult>
-
 }

@@ -5,7 +5,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -18,12 +17,7 @@ object NetworkModule {
     @Provides
     fun createApiService() : IApiService {
 
-        val okHttpClient = OkHttpClient
-            .Builder()
-            .build()
-
         val retrofit = Retrofit.Builder()
-            .client(okHttpClient)
             .baseUrl("https://api.themoviedb.org/3/movie/")
             .addConverterFactory(MoshiConverterFactory.create())
             .build()

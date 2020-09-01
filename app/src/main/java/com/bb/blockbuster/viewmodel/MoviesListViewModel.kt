@@ -13,6 +13,13 @@ import com.bb.blockbuster.viewstate.Success
 import com.bb.blockbuster.viewstate.ViewState
 import kotlinx.coroutines.launch
 
+/**
+ * View model that supports the MoviesListFragment
+ *
+ * @param movieRepository: Movie Repository
+ * @see MovieRepository
+ *
+ */
 class MoviesListViewModel @ViewModelInject constructor(private val movieRepository : MovieRepository) : ViewModel() {
 
     private val _movieListLiveData : MutableLiveData<ViewState<List<Movie>>> = MutableLiveData()
@@ -22,6 +29,11 @@ class MoviesListViewModel @ViewModelInject constructor(private val movieReposito
         fetchMovies()
     }
 
+    /**
+     * Method to fetch list of movies
+     *
+     * @param forceRefresh : Boolean
+     */
     fun fetchMovies(forceRefresh: Boolean = false) {
         _movieListLiveData.value = Loading
         viewModelScope.launch {

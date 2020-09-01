@@ -10,6 +10,9 @@ fun View.hide() {
     visibility = View.GONE
 }
 
+/**
+ * Helper extension method to build image url
+ */
 fun String.buildImageUri(): String {
     return "https://image.tmdb.org/t/p/w500${this}"
 }

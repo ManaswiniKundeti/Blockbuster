@@ -12,7 +12,7 @@ import javax.inject.Inject
  * @param apiService: API service for the TMDB movie API
  * @param appDatabase: Local room database to cache movies and user's cart
  */
-class MovieRepository @Inject constructor(private val apiService : IApiService, private val appDatabase : AppDatabase) {
+open class MovieRepository @Inject constructor(private val apiService : IApiService, private val appDatabase : AppDatabase) {
 
     /**
      * Method to fetch movies

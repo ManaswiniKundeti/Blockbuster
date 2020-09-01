@@ -12,6 +12,13 @@ import com.bb.blockbuster.viewstate.Success
 import com.bb.blockbuster.viewstate.ViewState
 import kotlinx.coroutines.launch
 
+/**
+ * View model that supports the CartFragment
+ *
+ * @param movieRepository: Movie Repository
+ * @see MovieRepository
+ *
+ */
 class CartListViewModel @ViewModelInject constructor(private val movieRepository: MovieRepository) : ViewModel() {
     private val _cartMovieListLiveData : MutableLiveData<ViewState<List<Movie>>> = MutableLiveData()
     val cartMovieListLiveData : LiveData<ViewState<List<Movie>>> = _cartMovieListLiveData
@@ -20,6 +27,10 @@ class CartListViewModel @ViewModelInject constructor(private val movieRepository
         fetchCartMovies()
     }
 
+    /**
+     * Method to fetch movies from the cart
+     *
+     */
     private fun fetchCartMovies() {
         _cartMovieListLiveData.value = Loading
         viewModelScope.launch {
