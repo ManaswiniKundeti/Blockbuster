@@ -2,10 +2,16 @@ package com.bb.blockbuster.extensions
 
 import android.view.View
 
+/**
+ * Extension function to show a view
+ */
 fun View.show() {
     visibility = View.VISIBLE
 }
 
+/**
+ * Extension function to hide a view
+ */
 fun View.hide() {
     visibility = View.GONE
 }
